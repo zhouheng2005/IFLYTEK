@@ -70,6 +70,8 @@ class IatRecorder {
     this.resultTextTemp = "";
     transWorker.onmessage = function (event) {
       self.audioData.push(...event.data);
+
+      
     };
   }
   // 修改录音听写状态

@@ -120,16 +120,11 @@ export default {
     onVoiceStart() {
       let that = this;
       that.timeOutEvent = setTimeout(() => {
-        if (that.iatRecorder3.status === "ing") {
-          that.iatRecorder3.stop();
-          clearTimeout(this.timeOutEvent); //清除定时器
-          this.timeOutEvent = 0;
-          this.longPressText = "长按说话识别文字";
-        } else {
-          this.longPressText = "松开结束";
-          that.onVoiceStart();
+        
+        
+          this.longPressText = "松开结束";          
           that.iatRecorder3.start();
-        }
+        
       }, 300);
     },
     onVoiceEnd() {

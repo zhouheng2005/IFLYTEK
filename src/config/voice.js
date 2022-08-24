@@ -177,15 +177,17 @@ class IatRecorder {
 
   wsOnMessage(e) {
     let jsonData = JSON.parse(e.data)
+
+    console.log(JSON.stringify(jsonData))
     if (jsonData.action == "started") {
       // 握手成功
       console.log("握手成功");
     } else if (jsonData.action == "result") {
       // 转写结果
-      if (this.config.onMessage && typeof this.config.onMessage == 'function') {
+      // if (this.config.onMessage && typeof this.config.onMessage == 'function') {
         this.result(jsonData.data);
         // this.config.onMessage(jsonData.data)
-      }
+      // }
     } else if (jsonData.action == "error") {
       // 连接发生错误
       console.log("出错了:", jsonData);
@@ -208,16 +210,6 @@ class IatRecorder {
       })
       console.log(str+"((*******")
     })
-  }
-
-  ArrayBufferToBase64(buffer) {
-    var binary = ''
-    var bytes = new Uint8Array(buffer)
-    var len = bytes.byteLength
-    for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i])
-    }
-    return window.btoa(binary)
   }
 }
 
