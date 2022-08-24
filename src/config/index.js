@@ -25,9 +25,9 @@ import TransWorker from "./transformpcm.worker.js";
 //import {getAuthUrl} from '@/api/websocketUrl.js'
 let transWorker = new TransWorker();
 //APPID，APISecret，APIKey在控制台-我的应用-语音听写（流式版）页面获取
-const APPID = "5fc98e1a";
+const APPID = "9e178222";
 const API_SECRET = "452fa745c065602f439ccb213e94b552";
-const API_KEY = "a1390a16797d2c102bd3038b4ccb536a";
+const API_KEY = "195bce25f2e2bdfd44b62fdcef0f11ec";
 /**
  * 获取websocket url
  * 该接口需要后端提供，这里为了方便前端处理

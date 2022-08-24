@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "crypto-js": "^4.1.1",
+    "md5": "^2.3.0",
     "vue": "^3.2.13",
     "worker-loader": "^3.0.8"
   },
