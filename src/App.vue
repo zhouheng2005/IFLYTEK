@@ -70,6 +70,7 @@ export default {
       // 监听识别结果的变化
       let that = this;
       this.iatRecorder3.onTextChange = function (text) {
+        console.log(text+"&&&&&&&&&&&&&")
         //转文字结果是text 然后onSearch是之后的操作可根据自己情况修改
         //注意！！这个方法不断会有新的翻译文字过来不是一锤子买卖O(∩_∩)O哈哈~
         if (text != "") {
@@ -89,7 +90,7 @@ export default {
       clearTimeout(this.timeOutEvent); //清除定时器
       this.timeOutEvent = 0;
       this.timeOutEvent = setTimeout(function () {
-        console.log(that.iatRecorder3.status + "*****");
+        console.log(that.iatRecorder3.status + "^^^^^^^^^^^^^^^^^^^^^^^");
         //执行长按要执行的内容，
         if (that.iatRecorder3.status === "ing") {
           that.iatRecorder3.stop();

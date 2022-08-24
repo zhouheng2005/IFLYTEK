@@ -188,7 +188,7 @@ class IatRecorder {
     var that = this;
     // 获取浏览器录音权限成功的回调
     let getMediaSuccess = (stream) => {
-      // console.log('getMediaSuccess')
+      console.log('getMediaSuccess:'+stream)
       // 创建一个用于通过JavaScript直接处理音频
       //新增保存录音
       this.scriptProcessor = this.audioContext.createScriptProcessor(
@@ -436,11 +436,14 @@ class IatRecorder {
             resultText: this.resultTextTemp,
           });
         }
+
+        console.log(str+"************************&&&&&&1")
         // 将结果存储在resultTextTemp中
         this.setResultText({
           resultTextTemp: this.resultText + str,
         });
       } else {
+        console.log(str+"************************&&&&&&2")
         this.setResultText({
           resultText: this.resultText + str,
         });
