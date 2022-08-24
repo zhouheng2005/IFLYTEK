@@ -72,9 +72,7 @@ export default {
       timeOutEvent: 0,
     };
   },
-
   created() {
-
     this.iatRecorder3 = new IatRecorder();
     this.myData();
     // this.isShow = true;
@@ -88,17 +86,13 @@ export default {
       // 监听识别结果的变化
       let that = this;
       this.iatRecorder3.onTextChange = function (text) {
-        console.log(text + "&&&&&&&&&&&&&")
-        //转文字结果是text 然后onSearch是之后的操作可根据自己情况修改
-        //注意！！这个方法不断会有新的翻译文字过来不是一锤子买卖O(∩_∩)O哈哈~
-        if (text != "") {
+        if (text === "") {
           return;
         }
         let data = text;
         that.endmessage = that.endmessage + data;
       };
     },
-
     fnEmpty() {
       this.endmessage = "";
     },
@@ -120,11 +114,11 @@ export default {
     onVoiceStart() {
       let that = this;
       that.timeOutEvent = setTimeout(() => {
-        
-        
-          this.longPressText = "松开结束";          
-          that.iatRecorder3.start();
-        
+
+
+        this.longPressText = "松开结束";
+        that.iatRecorder3.start();
+
       }, 300);
     },
     onVoiceEnd() {

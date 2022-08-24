@@ -87,13 +87,12 @@ class IatRecorder {
 
   stop() {
     this.state = 'end'
-    // try {
-    //   this.mediaStream.disconnect(this.recorder)
-    //   // this.recorder.disconnect()
-    //   // eslint-disable-next-line no-empty
-    // } catch (e) {
-    //   console.log(e)
-    // }
+    try {
+      this.mediaStream.disconnect(this.recorder)
+      this.recorder.disconnect()
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   sendData(buffer) {
@@ -177,8 +176,6 @@ class IatRecorder {
 
   wsOnMessage(e) {
     let jsonData = JSON.parse(e.data)
-
-    console.log(JSON.stringify(jsonData))
     if (jsonData.action == "started") {
       // 握手成功
       console.log("握手成功");
@@ -196,11 +193,11 @@ class IatRecorder {
 
   result(data) {
     let rtasrResult = []
-   
+    data=JSON.parse(data)
     rtasrResult[data.seg_id] = data
     rtasrResult.forEach(i => {
-      let str = "实时转写"
-      str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
+      let str = "";
+     
       i.cn.st.rt.forEach(j => {
         j.ws.forEach(k => {
           k.cw.forEach(l => {
@@ -208,7 +205,9 @@ class IatRecorder {
           })
         })
       })
-      console.log(str+"((*******")
+      
+      this.onTextChange && this.onTextChange(str || "");
+    
     })
   }
 }
