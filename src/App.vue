@@ -9,8 +9,8 @@
         <bottom>语音搜索</bottom>
       </div>
     </div>
-
     <!-- <div
+    <div
       @click="onVoiceClick"
       @touchstart="onVoiceStart"
       @touchend="onVoiceEnd"
@@ -18,18 +18,13 @@
       预备开始
     </div>
     <div>{{ endmessage }} {{ num > 0 ? num : "" }}</div> -->
-
-    <popupShow
-      v-if="isShowPopup"
-      @cancelClick="fnClickCancel"
-      @confirmClick="fnClickConfirm"
-    />
+    <popupShow v-if="isShowPopup" @cancelClick="fnClickCancel" @confirmClick="fnClickConfirm" />
   </div>
 </template>
 
 <script>
-import { IatRecorder } from "@/config/index.js";
-import popupShow from "./components/popup.vue";
+import { IatRecorder } from "@/config/index.js"
+import popupShow from "./components/popup.vue"
 export default {
   name: "App",
   components: {
@@ -80,17 +75,16 @@ export default {
       // 监听识别结果的变化
       let that = this;
       this.iatRecorder3.onTextChange = function (text) {
+        console.log(text + "&&&&&&&&&&&&&")
         //转文字结果是text 然后onSearch是之后的操作可根据自己情况修改
         //注意！！这个方法不断会有新的翻译文字过来不是一锤子买卖O(∩_∩)O哈哈~
         if (text != "") {
           return;
         }
-
         that.endmessage = text;
       };
     },
-
-    onVoiceClick() {},
+    onVoiceClick() { },
     /**
      * 语音输入开始
      */
@@ -99,7 +93,6 @@ export default {
       clearTimeout(this.timeOutEvent); //清除定时器
       this.timeOutEvent = 0;
       this.timeOutEvent = setTimeout(function () {
-        console.log(that.iatRecorder3.status + "*****");
         //执行长按要执行的内容，
         if (that.iatRecorder3.status === "ing") {
           that.iatRecorder3.stop();
@@ -118,7 +111,6 @@ export default {
       //   // this.myToast.message = `请讲话\n ${this.mySecond}s`;
       // }, 1000);
     },
-
     /**
      * 语音输入结束
      */
@@ -127,7 +119,6 @@ export default {
       this.timeOutEvent = 0;
       this.iatRecorder3.stop();
     },
-
     fnOpenClick() {
       this.isShowPopup = true;
     },
@@ -185,6 +176,7 @@ body {
   border: 0;
   padding: 0;
 }
+
 .flex {
   display: -webkit-flex;
   display: flex;
