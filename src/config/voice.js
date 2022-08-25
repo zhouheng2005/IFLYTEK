@@ -99,7 +99,7 @@ class IatRecorder {
   stop() {
     this.state = "end";
     try {
-      if (this.mediaStream) {
+      if (this.mediaStream && this.handlerInterval!=0) {
         this.mediaStream.disconnect(this.recorder);
         this.recorder.disconnect();
       }
@@ -113,6 +113,15 @@ class IatRecorder {
       command: "transform",
       buffer: buffer,
     });
+
+    var maxVal = 0;
+    for (var i = 0; i < buffer.length; i++) {
+      if (maxVal < buffer[i]) {
+        maxVal = buffer[i];
+      }
+    }
+    let num = Math.round(maxVal * 100);
+    this.onVoiceChange && this.onVoiceChange(num || "");
   }
   // 生成握手参数
   getHandShakeParams() {
@@ -169,6 +178,7 @@ class IatRecorder {
       // websocket未连接
       if (this.ws.readyState !== 1) {
         clearInterval(this.handlerInterval);
+        this.handlerInterval=0;
         return;
       }
       if (buffer.length === 0) {
@@ -176,6 +186,7 @@ class IatRecorder {
           this.ws.send('{"end": true}');
           console.log("发送结束标识");
           clearInterval(this.handlerInterval);
+          this.handlerInterval=0
         }
         return false;
       }
@@ -205,7 +216,6 @@ class IatRecorder {
     rtasrResult[data.seg_id] = data;
     rtasrResult.forEach((i) => {
       let str = "";
-
       i.cn.st.rt.forEach((j) => {
         j.ws.forEach((k) => {
           k.cw.forEach((l) => {
@@ -213,7 +223,6 @@ class IatRecorder {
           });
         });
       });
-
       this.onTextChange && this.onTextChange(str || "");
     });
   }

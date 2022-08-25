@@ -41,22 +41,22 @@
                 取消
               </div>
               <div
-                class="voiceprint flex u-col-center u-row-center"
+                class="voiceprint flex u-col-center u-row-center" :style="'height:'+voice*10+'px'"
                 v-if="isLongPress || timeOutEvent !== 0"
               >
-                <div class="yinjie one"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie seven"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie one"></div>
+               <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie seven" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
               </div>
             </div>
 
@@ -73,22 +73,22 @@
 
             <div class="flex-1 right flex u-col-center u-row-center">
               <div
-                class="voiceprint flex u-col-center u-row-center"
+                class="voiceprint flex u-col-center u-row-center" 
                 v-if="isLongPress || timeOutEvent !== 0"
               >
-                <div class="yinjie one"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie seven"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie one"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie seven" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
               </div>
               <div
                 class="cancel"
@@ -125,6 +125,7 @@ export default {
       endmessage: "",
       isLongPress: false,
       timeOutEvent: 0,
+      voice:0,
     };
   },
   created() {
@@ -146,6 +147,13 @@ export default {
         }
         let data = text;
         that.endmessage = that.endmessage + data;
+      };
+      this.iatRecorder3.onVoiceChange= function (voice) {
+        console.log(voice)
+        if (voice === "") {
+          return;
+        }
+        that.voice = voice
       };
     },
     fnEmpty() {
