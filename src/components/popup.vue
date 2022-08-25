@@ -9,10 +9,16 @@
               <div class="icon">机器人图标</div>
               <div class="icon-title">你可以说</div>
             </div>
-            <div class="flex u-col-center u-row-center transfer" v-if="endmessage">
+            <div
+              class="flex u-col-center u-row-center transfer"
+              v-if="endmessage"
+            >
               {{ endmessage }}
             </div>
-            <div class="flex flex-column u-col-center u-row-center transfer" v-else>
+            <div
+              class="flex flex-column u-col-center u-row-center transfer"
+              v-else
+            >
               <div>“卫生间”</div>
               <div>“我要去服务台”</div>
             </div>
@@ -20,30 +26,79 @@
 
           <div class="flex u-col-center u-row-center footer">
             <div class="flex-1 left flex u-col-center u-row-center">
-              <div class="cancel" @click="fnEmpty()" v-if="!isLongPress && endmessage !== '' && timeOutEvent === 0">
+              <div
+                class="cancel"
+                @click="fnEmpty()"
+                v-if="!isLongPress && endmessage !== '' && timeOutEvent === 0"
+              >
                 清空
               </div>
-              <div class="cancel" @click="fnCancel()" v-if="!isLongPress && endmessage === '' && timeOutEvent === 0">
+              <div
+                class="cancel"
+                @click="fnCancel()"
+                v-if="!isLongPress && endmessage === '' && timeOutEvent === 0"
+              >
                 取消
               </div>
-              <div class="voiceprint flex u-col-center u-row-center" v-if="isLongPress || timeOutEvent !== 0">
-                声纹
+              <div
+                class="voiceprint flex u-col-center u-row-center"
+                v-if="isLongPress || timeOutEvent !== 0"
+              >
+                <div class="yinjie one"></div>
+                <div class="yinjie two"></div>
+                <div class="yinjie three"></div>
+                <div class="yinjie four"></div>
+                <div class="yinjie five"></div>
+                <div class="yinjie six"></div>
+                <div class="yinjie seven"></div>
+                <div class="yinjie six"></div>
+                <div class="yinjie five"></div>
+                <div class="yinjie four"></div>
+                <div class="yinjie three"></div>
+                <div class="yinjie two"></div>
+                <div class="yinjie one"></div>
               </div>
             </div>
 
             <div class="btn flex flex-column u-col-center u-row-center">
               <div class="longpress">{{ longPressText }}</div>
-              <div class="sound-recording" @touchstart="onVoiceStart" @touchend="onVoiceEnd">
+              <div
+                class="sound-recording"
+                @touchstart="onVoiceStart"
+                @touchend="onVoiceEnd"
+              >
                 录音按钮图片
               </div>
             </div>
 
             <div class="flex-1 right flex u-col-center u-row-center">
-              <div class="voiceprint flex u-col-center u-row-center" v-if="isLongPress || timeOutEvent !== 0">
-                声纹
+              <div
+                class="voiceprint flex u-col-center u-row-center"
+                v-if="isLongPress || timeOutEvent !== 0"
+              >
+                <div class="yinjie one"></div>
+                <div class="yinjie two"></div>
+                <div class="yinjie three"></div>
+                <div class="yinjie four"></div>
+                <div class="yinjie five"></div>
+                <div class="yinjie six"></div>
+                <div class="yinjie seven"></div>
+                <div class="yinjie six"></div>
+                <div class="yinjie five"></div>
+                <div class="yinjie four"></div>
+                <div class="yinjie three"></div>
+                <div class="yinjie two"></div>
+                <div class="yinjie one"></div>
               </div>
-              <div class="cancel" v-if="!isLongPress && endmessage === ''"></div>
-              <div class="cancel" v-if="!isLongPress && endmessage !== '' && timeOutEvent === 0" @click="fnConfirm()">
+              <div
+                class="cancel"
+                v-if="!isLongPress && endmessage === ''"
+              ></div>
+              <div
+                class="cancel"
+                v-if="!isLongPress && endmessage !== '' && timeOutEvent === 0"
+                @click="fnConfirm()"
+              >
                 确定
               </div>
             </div>
@@ -114,11 +169,8 @@ export default {
     onVoiceStart() {
       let that = this;
       that.timeOutEvent = setTimeout(() => {
-
-
         this.longPressText = "松开结束";
         that.iatRecorder3.start();
-
       }, 300);
     },
     onVoiceEnd() {
@@ -270,10 +322,53 @@ export default {
 }
 
 .voiceprint {
-  height: 60px;
   width: 100%;
-  background-color: #000;
-  color: #fff;
+}
+
+.yinjie {
+  width: 4px;
+  height: 60px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+@keyframes tiao {
+  0% {
+    transform: scale(1, 1);
+    background-color: blue;
+  }
+  100% {
+    transform: scale(1, 0.2);
+    background-color: red;
+  }
+}
+
+.one {
+  animation: tiao 0.5s 2s linear infinite alternate;
+}
+
+.two {
+  animation: tiao 0.5s 1.8s linear infinite alternate;
+}
+
+.three {
+  animation: tiao 0.5s 1.6s linear infinite alternate;
+}
+
+.four {
+  animation: tiao 0.5s 1.4s linear infinite alternate;
+}
+
+.five {
+  animation: tiao 0.5s 1.2s linear infinite alternate;
+}
+
+.six {
+  animation: tiao 0.5s 1s linear infinite alternate;
+}
+
+.seven {
+  animation: tiao 0.4s linear infinite alternate;
 }
 
 .cancel {
@@ -303,12 +398,30 @@ export default {
   color: #fff;
 }
 
-.sound-recording {
+.sound-recording,
+.sound-recording::before {
   width: 60px;
   height: 60px;
   background-color: #000;
   border-radius: 50%;
   text-align: center;
   color: #fff;
+  background-color: rgba(241, 34, 30, 0.5);
+}
+
+.sound-recording::before {
+  animation: scale 2s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(6);
+    opacity: 0;
+  }
 }
 </style>

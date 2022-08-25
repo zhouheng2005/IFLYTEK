@@ -99,8 +99,10 @@ class IatRecorder {
   stop() {
     this.state = "end";
     try {
-      this.mediaStream.disconnect(this.recorder);
-      this.recorder.disconnect();
+      if (this.mediaStream) {
+        this.mediaStream.disconnect(this.recorder);
+        this.recorder.disconnect();
+      }
     } catch (e) {
       console.log(e);
     }
