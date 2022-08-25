@@ -34,8 +34,8 @@ class IatRecorder {
     this.config = config;
     this.state = "ing";
     //以下信息在控制台-我的应用-实时语音转写 页面获取
-    this.appId = "9e178222";
-    this.apiKey = "195bce25f2e2bdfd44b62fdcef0f11ec";
+    this.appId = "";
+    this.apiKey = "";
   }
 
   start() {
