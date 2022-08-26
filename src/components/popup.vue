@@ -62,6 +62,7 @@
 
             <div class="btn flex flex-column u-col-center u-row-center">
               <div class="longpress">{{ longPressText }}</div>
+              <div class="sound-btn" :class="isBtn ? 'active' : ''"></div>
               <div
                 class="sound-recording"
                 @touchstart="onVoiceStart"
@@ -125,6 +126,7 @@ export default {
       endmessage: "",
       isLongPress: false,
       timeOutEvent: 0,
+      isBtn: false,
     };
   },
   created() {
@@ -169,6 +171,7 @@ export default {
     onVoiceStart() {
       let that = this;
       that.timeOutEvent = setTimeout(() => {
+        this.isBtn = true;
         this.longPressText = "松开结束";
         that.iatRecorder3.start();
       }, 300);
@@ -178,6 +181,7 @@ export default {
       this.timeOutEvent = 0;
       this.longPressText = "长按说话识别文字";
       this.iatRecorder3.stop();
+      this.isBtn = false;
     },
   },
 };
@@ -379,6 +383,7 @@ export default {
 .btn {
   text-align: center;
   position: relative;
+  z-index: 99;
   margin: 0 20px;
 }
 
@@ -392,24 +397,38 @@ export default {
 
 .longpress {
   position: absolute;
+  z-index: 10;
   top: -50px;
   width: 300px;
   font-size: 16px;
   color: #fff;
 }
 
-.sound-recording,
-.sound-recording::before {
+.sound-recording {
+  position: relative;
+  z-index: 99;
   width: 60px;
   height: 60px;
   background-color: #000;
   border-radius: 50%;
   text-align: center;
   color: #fff;
-  background-color: rgba(241, 34, 30, 0.5);
 }
 
-.sound-recording::before {
+.sound-btn.active::before,
+.sound-btn.active::after {
+  position: absolute;
+  z-index: 1;
+  left: 20px;
+  bottom: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  content: "";
+  background-color: #000;
+}
+
+.sound-btn.active::before {
   animation: scale 2s infinite;
 }
 
