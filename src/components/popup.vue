@@ -41,22 +41,22 @@
                 取消
               </div>
               <div
-                class="voiceprint flex u-col-center u-row-center"
+                class="voiceprint flex u-col-center u-row-center" :style="'height:'+voice*10+'px'"
                 v-if="isLongPress || timeOutEvent !== 0"
               >
-                <div class="yinjie one"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie seven"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie one"></div>
+               <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie seven" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
               </div>
             </div>
 
@@ -74,22 +74,22 @@
 
             <div class="flex-1 right flex u-col-center u-row-center">
               <div
-                class="voiceprint flex u-col-center u-row-center"
+                class="voiceprint flex u-col-center u-row-center" 
                 v-if="isLongPress || timeOutEvent !== 0"
               >
-                <div class="yinjie one"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie seven"></div>
-                <div class="yinjie six"></div>
-                <div class="yinjie five"></div>
-                <div class="yinjie four"></div>
-                <div class="yinjie three"></div>
-                <div class="yinjie two"></div>
-                <div class="yinjie one"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie seven" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie six" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie five" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie four" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie three" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie two" :style="'height:'+voice*10+'px'"></div>
+                <div class="yinjie one" :style="'height:'+voice*10+'px'"></div>
               </div>
               <div
                 class="cancel"
@@ -127,6 +127,7 @@ export default {
       isLongPress: false,
       timeOutEvent: 0,
       isBtn: false,
+      voice:0,
     };
   },
   created() {
@@ -148,6 +149,13 @@ export default {
         }
         let data = text;
         that.endmessage = that.endmessage + data;
+      };
+      this.iatRecorder3.onVoiceChange= function (voice) {
+        console.log(voice)
+        if (voice === "") {
+          return;
+        }
+        that.voice = voice
       };
     },
     fnEmpty() {
@@ -273,12 +281,10 @@ export default {
   flex: 1;
 }
 
-/* 垂直居中 */
 .u-col-center {
   align-items: center;
 }
 
-/* 水平居中 */
 .u-row-center {
   justify-content: center;
 }
@@ -287,7 +293,6 @@ export default {
   flex-wrap: wrap;
 }
 
-/* 水平每个项目两侧的间隔相等，所以项目之间的间隔比项目与父元素两边的间隔大一倍 */
 .u-row-around {
   justify-content: space-around;
 }
