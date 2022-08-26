@@ -127,7 +127,7 @@ export default {
       isLongPress: false,
       timeOutEvent: 0,
       isBtn: false,
-      voice:0,
+      voice:2,
     };
   },
   created() {
